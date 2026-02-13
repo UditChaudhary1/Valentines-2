@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Surprise ❤️</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  text-align:center;
+  background: linear-gradient(180deg, #f9c5d1, #fbc2eb);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.container {
+  width:90%;
+  max-width:420px;
+}
+
+h1 {
+  font-size:50px;
+  color:#e91e63;
+  margin:10px 0;
+}
+
+.sub {
+  font-size:18px;
+  color:#555;
+  margin-bottom:20px;
+}
+
+.button {
+  padding:14px 28px;
+  border-radius:40px;
+  border:none;
+  cursor:pointer;
+  font-size:18px;
+  margin:10px;
+  transition:0.3s;
+}
+
+.yes {
+  background:#ff2d55;
+  color:white;
+}
+
+.no {
+  background:#f1f1f1;
+}
+
+img {
+  width:160px;
+  border-radius:20px;
+  margin:20px auto;
+}
+
+.hidden {
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page404">
+  <div style="font-size:40px;">💌</div>
+  <h1>404</h1>
+  <div class="sub">Oops! Page Not Found<br>Looks like this page wandered off... but something special is waiting!</div>
+  <button class="button yes" onclick="showMain()">Refresh ✨</button>
+</div>
+
+
+<div class="container hidden" id="mainPage">
+  <div style="font-size:40px;">❤️</div>
+
+  <img src="https://media.giphy.com/media/GMFUrC8E8aWoo/giphy.gif">
+
+  <h2 style="color:#e91e63; font-size:26px;">Will you be my Valentine?</h2>
+  <div id="funnyText" class="sub">Are you sure?!</div>
+
+  <button id="yesBtn" class="button yes" onclick="accepted()">YES 💕</button>
+  <button class="button no" onclick="noClicked()">NO 🥺</button>
+</div>
+
+
+<div class="container hidden" id="successPage">
+  <div style="font-size:50px;">❤️</div>
+  <img src="https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif">
+  <h2 style="color:#e91e63;">Yaaay! 🎉</h2>
+  <div class="sub">
+    This is the best decision you have made! <br><br>
+    💕 You will plan the date <br>
+    ✨ Matching vibes mandatory <br>
+    🤗 Random hugs & kisses allowed <br>
+    📸 You click my pictures <br>
+    🍰 Dessert compulsory <br>
+    ❤️ Love me like every day is Valentine’s Day
+  </div>
+</div>
+
+<script>
+let count = 0;
+
+function showMain(){
+  document.getElementById("page404").classList.add("hidden");
+  document.getElementById("mainPage").classList.remove("hidden");
+}
+
+function noClicked(){
+  count++;
+  const yesBtn = document.getElementById("yesBtn");
+  const funny = document.getElementById("funnyText");
+
+  const messages = [
+    "Are you sure?! 😢",
+    "Last chance. Think again.",
+    "Give it another thought 💭",
+    "You might regret this 😏",
+    "Itni jaldi NO? 😆"
+  ];
+
+  funny.innerText = messages[count % messages.length];
+
+  yesBtn.style.transform = `scale(${1 + count * 0.2})`;
+}
+
+function accepted(){
+  document.getElementById("mainPage").classList.add("hidden");
+  document.getElementById("successPage").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
