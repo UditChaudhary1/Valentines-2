@@ -15,33 +15,61 @@ body {
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:20px;
 }
 
 .container {
-  width:90%;
+  width:100%;
   max-width:420px;
 }
 
 h1 {
-  font-size:50px;
+  font-size:48px;
   color:#e91e63;
   margin:10px 0;
 }
 
+h2 {
+  color:#e91e63;
+  font-size:24px;
+  margin-bottom:10px;
+}
+
 .sub {
-  font-size:18px;
+  font-size:17px;
   color:#555;
   margin-bottom:20px;
 }
 
+/* Bigger responsive image */
+img {
+  width:85%;
+  max-width:240px;
+  border-radius:20px;
+  margin:20px auto;
+  display:block;
+}
+
+/* Floating animation for question */
+@keyframes floatText {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: floatText 2.5s ease-in-out infinite;
+}
+
+/* Buttons */
 .button {
   padding:14px 28px;
   border-radius:40px;
   border:none;
   cursor:pointer;
-  font-size:18px;
-  margin:10px;
-  transition:0.3s;
+  font-size:17px;
+  margin:8px;
+  transition:0.3s ease;
 }
 
 .yes {
@@ -51,49 +79,64 @@ h1 {
 
 .no {
   background:#f1f1f1;
+  color:#333;
 }
 
-img {
-  width:160px;
-  border-radius:20px;
-  margin:20px auto;
+.button:active {
+  transform: scale(0.95);
 }
 
 .hidden {
   display:none;
+}
+
+/* Mobile tuning */
+@media (max-width: 400px) {
+  h1 { font-size:40px; }
+  h2 { font-size:20px; }
+  .sub { font-size:15px; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- 404 PAGE -->
 <div class="container" id="page404">
   <div style="font-size:40px;">💌</div>
   <h1>404</h1>
-  <div class="sub">Oops! Page Not Found<br>Looks like this page wandered off... but something special is waiting!</div>
+  <div class="sub">
+    Oops! Page Not Found<br>
+    Looks like this page wandered off... but something special is waiting!
+  </div>
   <button class="button yes" onclick="showMain()">Refresh ✨</button>
 </div>
 
 
+<!-- MAIN PROPOSAL PAGE -->
 <div class="container hidden" id="mainPage">
   <div style="font-size:40px;">❤️</div>
 
-  <img src="https://media.giphy.com/media/GMFUrC8E8aWoo/giphy.gif">
+  <img src="https://media.giphy.com/media/GMFUrC8E8aWoo/giphy.gif" alt="Cute Teddy">
 
-  <h2 style="color:#e91e63; font-size:26px;">Will you be my Valentine?</h2>
-  <div id="funnyText" class="sub">Are you sure?!</div>
+  <h2>Will you be my Valentine?</h2>
+  <div id="funnyText" class="sub floating">Are you sure?!</div>
 
   <button id="yesBtn" class="button yes" onclick="accepted()">YES 💕</button>
   <button class="button no" onclick="noClicked()">NO 🥺</button>
 </div>
 
 
+<!-- SUCCESS PAGE -->
 <div class="container hidden" id="successPage">
   <div style="font-size:50px;">❤️</div>
-  <img src="https://media.giphy.com/media/GMFUrC8E8aWoo/giphy.gif" alt="cute love">
+
+  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Cute Love">
+
   <h2 style="color:#e91e63;">Yaaay! 🎉</h2>
+
   <div class="sub">
-    This is the best decision you have made! <br><br>
+    This is the best decision you have made! 💖<br><br>
     💕 You will plan the date <br>
     ✨ Matching vibes mandatory <br>
     🤗 Random hugs & kisses allowed <br>
@@ -126,7 +169,8 @@ function noClicked(){
 
   funny.innerText = messages[count % messages.length];
 
-  yesBtn.style.transform = `scale(${1 + count * 0.2})`;
+  /* YES button grows gradually */
+  yesBtn.style.transform = `scale(${1 + count * 0.15})`;
 }
 
 function accepted(){
